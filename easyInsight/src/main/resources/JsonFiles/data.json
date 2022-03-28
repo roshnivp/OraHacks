@@ -1,0 +1,19 @@
+{
+  "active sessions": "1001 sessions are active",
+  "OAC errors": "34553 errors reported",
+  "OAX error": "0 errors reported",
+  "features": "2,271 feature so far in OAX",
+  "Data config user": "542 Data config users",
+  "Data augmentation user": "266 Data augmentation users",
+  "Total financial offering": "2002 Financial offering",
+  "Total HCM offering": "1211 HCM offering",
+  "Total project offering": "505 Project offering",
+  "Total SCM offering": "186 SCM offering",
+  "Total sales offering": "144 Sales offering",
+  "Total market offering": "44 Market offering",
+  "activation plans": "9092 load of activation plans in DC",
+  "requested history": "5045 requested history in DC",
+  "scheduled activation": "3074 scheduled activation plan in DC",
+  "pipeline parameter": "5040 pipeline parameters in DC",
+  "release update": "2413 release updates in DC"
+}
