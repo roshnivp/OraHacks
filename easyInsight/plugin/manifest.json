@@ -6,7 +6,7 @@
     "content_scripts": [
         {
           "matches": ["file:///Users/*", "https://outlook.office.com/mail/", "https://twitter.com/home"],
-          "js": ["js/content-script.js"]
+          "js": ["js/content-script.js"],
           "css": ["css/view.css"],
           "images": ["./images/img1.png", "./images/img2.png", "./images/img7.png"]
         }
