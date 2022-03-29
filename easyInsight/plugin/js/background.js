@@ -10,4 +10,5 @@ chrome.runtime.onMessage.addListener(function(message, sender, callback) {
 		files: ['js/jquery.min.js', 'js/ajax.js', 'js/jquery-textcomplete.min.js', 'js/main.js'], 
 		target: { tabId: sender.tab.id } 
 	});
+	return true;
 });
