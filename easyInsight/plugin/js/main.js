@@ -18,7 +18,7 @@ $(document).ready(() => {
         },
         // Template used to display the selected result in the textarea
         selectedResult: (hit) => {
-            // renderTooltips();
+             renderTooltips();
             return `<label contentEditable="false" spellcheck="false" class="tag-item" style="color:#0071c2;"><a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label> `;
         },
         //`<label contentEditable="false" spellcheck="false" class="tooltip">${hit}<span class="tooltiptext">${hit}</span></label>`,
@@ -37,8 +37,9 @@ $(document).ready(() => {
             // dropdown.style.backgroundColor = 'rgb(240,240,240)';
            // let image = chrome.extension.getURL('logo.png');
            //let imgsrc = chrome.runtime.getURL("images/img1.png");
-            return `<img width="150" height="100" style="" alt="" src="images/img7.png" /><br>${fullName}<br>`;
-            //return `${fullName}`;
+
+           // return `<img width="150" height="100" style="" alt="" src="images/img7.png" /><br>${fullName}<br>`;
+            return `${fullName}`;
         }
     };
 
@@ -110,23 +111,24 @@ function ApiClient(options) {
     }
 }
 
-// function renderTooltips() {
-//     // Initialize
-//     var Tooltips = document.getElementsByClassName('TooltipTrigger');
-//     $("previewParagraph").text($("autocomplete-textarea").val())
+ function renderTooltips() {
+     // Initialize
+     var Tooltips = document.getElementsByClassName('TooltipTrigger');
+     $("previewParagraph").text($("autocomplete-textarea").val())
 
-// // Track all tooltips trigger
-//     for (var i = 0; i < Tooltips.length; i++) {
-//         // Event Handler
-//         Tooltips[i].addEventListener("mouseenter", function(ev) {
-//             ev.preventDefault();
-//             this.style.position = "relative";
-//             this.innerHTML = this.innerHTML + "<div class='Tooltips'><p class='" + this.getAttribute("data-position") + "'>" + this.getAttribute("data-tooltips") + "</p></div>";
-//         });
-//         Tooltips[i].addEventListener("mouseleave", function(ev) {
-//             ev.preventDefault();
-//             this.removeAttribute("style");
-//             this.innerHTML = this.innerHTML.replace(/<div[^]*?<\/div>/, '');;
-//         });
-//     }
-// }
+ // Track all tooltips trigger
+     for (var i = 0; i < Tooltips.length; i++) {
+         // Event Handler
+         Tooltips[i].addEventListener("mouseenter", function(ev) {
+             ev.preventDefault();
+             this.style.position = "relative";
+             //this.innerHTML = this.innerHTML + "<div class='Tooltips'><p class='" + this.getAttribute("data-position") + "'>" + this.getAttribute("data-tooltips") + "</p></div>";
+             this.innerHTML = this.innerHTML + "<div class='Tooltips'><img width='150' height='100' style='' alt='' src='images/img7.png' /></div>";
+         });
+         Tooltips[i].addEventListener("mouseleave", function(ev) {
+             ev.preventDefault();
+             this.removeAttribute("style");
+             this.innerHTML = this.innerHTML.replace(/<div[^]*?<\/div>/, '');;
+         });
+     }
+ }
