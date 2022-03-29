@@ -1,0 +1,13 @@
+/build/
+/.classpath
+/.project
+/.settings
+/hudson.properties
+/bin/
+/.gradle/
+.idea
+*.iml
+out
+.flattened-pom.xml
+target
+.DS_Store

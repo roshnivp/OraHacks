@@ -1,0 +1,99 @@
+body {
+    background-color: lightgray;
+    color: slateblue;
+}
+small {
+    color:#83ba52 !important;
+}
+mark {
+    background-color: #f5d67b;
+}
+
+#autocomplete-textarea {
+    min-height: 80px;
+    color: #000;
+    overflow-y: auto;
+    max-height: 400px;
+}
+#autocomplete-textarea a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #181818;
+}
+.dropdown-menu .textcomplete-item a,
+.dropdown-menu .textcomplete-item a:hover {
+    cursor: pointer;
+    font-weight: 400;
+    color: #000;
+    position: relative;
+    padding: 3px 10px;
+}
+.dropdown-menu .textcomplete-item.active a {
+    background: #f0f0f0;
+}
+.dropdown-menu .textcomplete-item a em {
+    font-style: normal;
+    font-weight: 700;
+}
+.dropdown-menu .textcomplete-footer {
+    border-top: solid 1px #f0f0f0;
+    margin-top: 3px;
+}
+.dropdown-menu .textcomplete-item a {
+    box-sizing: border-box;
+    height: 46px;
+}
+.dropdown-menu .textcomplete-item .picture {
+    border-radius: 2em;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    float: left;
+    margin-top: 4px;
+    margin-right: 9px;
+}
+.dropdown-menu .textcomplete-item .picture img {
+    width: 32px;
+}
+.dropdown-menu .textcomplete-item span {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.dropdown-menu .textcomplete-item .name {
+    font-size: 14px;
+    color: #333333;
+}
+.dropdown-menu .textcomplete-item .bottom {
+    font-size: 11px;
+    line-height: 11px;
+
+    color: #767676;
+}
+.dropdown-menu .textcomplete-item .flag {
+    height: 18px;
+    vertical-align: middle;
+}
+
+/* Tagged item */
+.tag-item,
+.tag-item:visited {
+    font-weight: 400;
+    padding: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: default;
+}
+.tag-item:hover {
+    text-decoration: none;
+}
+.tag-item {
+    color: #0071c2;
+    font-weight: 400;
+    font-size: 100%;
+    padding: 0;
+}
