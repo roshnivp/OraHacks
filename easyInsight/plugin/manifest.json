@@ -5,8 +5,8 @@
     "manifest_version": 3,
     "content_scripts": [
         {
-          "matches": ["file:///Users/*", "https://outlook.office.com/mail/"],
-          "js": ["js/content-script.js"],
+          "matches": ["file:///Users/*", "https://outlook.office.com/mail/", "https://twitter.com/home"],
+          "js": ["js/content-script.js"]
           "css": ["css/view.css"],
           "images": ["./images/img1.png", "./images/img2.png", "./images/img7.png"]
         }
@@ -17,7 +17,8 @@
     "permissions": ["storage", "activeTab", "scripting", "tabs"],
     "host_permissions": [
       "https://outlook.office.com/mail/",
-      "file:///*/*"
+      "file:///*/*",
+      "https://twitter.com/home"
       ],
     "icons": {
         "16": "/images/get_started16.png",
