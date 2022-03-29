@@ -18,10 +18,7 @@ function checkForSource() {
 		} else if (demoTextBox) {
 			registerTarget("DEMO-TEXT-BOX");
 		} else if (twitterTextBox) {
-			registerTarget("twitter");
-		} else {
-			console.log("No known target found!")
-			registerTarget("DEFAULT");
+			registerTarget("TWITTER");
 		}
 	}
 }

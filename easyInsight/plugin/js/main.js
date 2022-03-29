@@ -3,7 +3,7 @@ $(document).ready(() => {
     const AUTOCOMPLETE_ITEMS_DISPLAYED = 15;
     const SEARCH_CACHE = true;
     const SEARCH_MS_DEBOUNCE = 0;
-    const SEARCH_TRIGGER_CHAR = "#";
+    const SEARCH_TRIGGER_CHAR = "~";
     const SEARCH_TRIGGER_MIN_CHARS = 0;
     const SEARCH_MATCH_REGEX = new RegExp(
         `(^|\\s)${SEARCH_TRIGGER_CHAR}(\\w${
