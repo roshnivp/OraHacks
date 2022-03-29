@@ -19,7 +19,7 @@ $(document).ready(() => {
         // Template used to display the selected result in the textarea
         selectedResult: (hit) => {
             // renderTooltips();
-            return `<label contentEditable="false" spellcheck="false" class="tag-item">${hit}</label> `;
+            return `<label contentEditable="false" spellcheck="false" class="tag-item" style="color:#0071c2;"><a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label> `;
         },
         //`<label contentEditable="false" spellcheck="false" class="tooltip">${hit}<span class="tooltiptext">${hit}</span></label>`,
     
@@ -27,7 +27,18 @@ $(document).ready(() => {
         resultDisplay: (hit) => {
             const regex = new RegExp("(".concat(hit.searchQuery, ")"), "i");
             const fullName = hit.replace(regex, "<em>$1</em>");
-            return `<p style="color: red">${fullName}</p>`;
+        
+            let dropdown = document.querySelector('#textcomplete-dropdown-1');
+            dropdown.classList.add('dropdown-custom');
+            // dropdown.style.overflow = 'hidden';
+            // dropdown.style.listStyle = 'none';
+            // dropdown.style.height = '150px';
+            // dropdown.style.overflowY = 'scroll';
+            // dropdown.style.backgroundColor = 'rgb(240,240,240)';
+           // let image = chrome.extension.getURL('logo.png');
+           //let imgsrc = chrome.runtime.getURL("images/img1.png");
+            return `<img width="150" height="100" style="" alt="" src="images/img7.png" /><br>${fullName}<br>`;
+            //return `${fullName}`;
         }
     };
 
