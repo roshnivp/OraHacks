@@ -123,7 +123,7 @@ function ApiClient(options) {
              ev.preventDefault();
              this.style.position = "relative";
              //this.innerHTML = this.innerHTML + "<div class='Tooltips'><p class='" + this.getAttribute("data-position") + "'>" + this.getAttribute("data-tooltips") + "</p></div>";
-             this.innerHTML = this.innerHTML + "<div class='Tooltips'><img width='150' height='100' style='' alt='' src='images/img7.png' /></div>";
+             this.innerHTML = this.innerHTML + "<div class='Tooltips'><a href=`https://www.w3schools.com' target='_blank'><img width='150' height='100' style='' alt='' src='images/img7.png' /></a></div>";
          });
          Tooltips[i].addEventListener("mouseleave", function(ev) {
              ev.preventDefault();
