@@ -24,7 +24,7 @@ $(document).ready(() => {
             <a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label>
             <span><a href="https://www.w3schools.com" target="_blank">
             <img width='150' height='100' src=${imageUrl}/></a>
-            <h4>${hit}</h4></span>
+            <h5>${hit}</h5></span>
             </span>`;
         },
     
