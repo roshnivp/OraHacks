@@ -19,12 +19,13 @@ $(document).ready(() => {
         // Template used to display the selected result in the textarea
         selectedResult: (hit) => {
             let imageUrl = chrome.runtime.getURL("images/img1.png");
-            return `<div contentEditable="false" class="tooltip-trigger">
+            return `<span contentEditable="false" class="tooltip-trigger">
             <label contentEditable="false" spellcheck="false" class="tag-item" style="color:#0071c2;">
             <a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label>
-            <span class='Tooltips'><a href='https://www.w3schools.com' target='_blank'><img width='150' height='100' style='' alt='' src=${imageUrl}/></a>
+            <span><a href="https://www.w3schools.com" target="_blank">
+            <img width='150' height='100' src=${imageUrl}/></a>
             <h4>${hit}</h4></span>
-            </div>`;
+            </span>`;
         },
     
         // Template used to display each result obtained by the API
@@ -33,14 +34,6 @@ $(document).ready(() => {
             const value = hit.replace(regex, "<em>$1</em>");
             let dropdown = document.querySelector('#textcomplete-dropdown-1');
             dropdown.classList.add('dropdown-custom');
-            // dropdown.style.overflow = 'hidden';
-            // dropdown.style.listStyle = 'none';
-            // dropdown.style.height = '150px';
-            // dropdown.style.overflowY = 'scroll';
-            // dropdown.style.backgroundColor = 'rgb(240,240,240)';
-            // let image = chrome.extension.getURL('logo.png');
-            // let imgsrc = chrome.runtime.getURL("images/img1.png");
-            // return `<img width="150" height="100" style="" alt="" src="images/img7.png" /><br>${fullName}<br>`;
             return `${value}`;
         }
     };
@@ -52,7 +45,6 @@ $(document).ready(() => {
     let selectorElement;
     chrome.storage.local.get("easyInsightTargetSelector", (result) => {
         selectorElement = $(result.easyInsightTargetSelector);
-        selectorElement[0].addEventListener("paste", onPastePlainText);
         selectorElement.textcomplete([mentionStrategy], {
             debounce: SEARCH_MS_DEBOUNCE,
             maxCount: AUTOCOMPLETE_ITEMS_DISPLAYED,
@@ -65,19 +57,6 @@ $(document).ready(() => {
     });
     let lastQuery = "";
 
-    // Disable formatting on paste
-    const onPastePlainText = (e) => {
-        e.preventDefault();
-        var pastedText;
-        if (window.clipboardData && window.clipboardData.getData) {
-            // IE
-            pastedText = window.clipboardData.getData("Text");
-        } else if (e.clipboardData && e.clipboardData.getData) {
-            pastedText = e.clipboardData.getData("text/plain");
-        }
-        document.execCommand("insertHTML", false, pastedText);
-    };
-    
     const mentionStrategy = {
         // If enabled, it will memoize by term argument. This is useful to prevent excessive API access
         cache: SEARCH_CACHE,
@@ -100,9 +79,6 @@ $(document).ready(() => {
         // Template used to display the selected result in the textarea
         replace: (hit) => templates.selectedResult(hit) 
     };
-
-    // renderTooltips();
-
 });
 
 function ApiClient(options) {
@@ -115,24 +91,3 @@ function ApiClient(options) {
         });
     }
 }
-
-//  function renderTooltips() {
-//      // Initialize
-//      var Tooltips = document.getElementsByClassName('tooltip-trigger');
-//     // Track all tooltips trigger
-//      for (let i = 0; i < Tooltips.length; i++) {
-//          // Event Handler
-//          Tooltips[i].addEventListener("mouseenter", function (ev) {
-//              ev.preventDefault();
-//              this.style.position = "relative";
-//              this.innerHTML = this.innerHTML + 
-//              `<span class='Tooltips'><img width='150' height='100' style='' alt='' src='images/img7.png' />
-//              <h3>How use my site</h3></span>`;
-//          });
-//          Tooltips[i].addEventListener("mouseleave", (ev) => {
-//              ev.preventDefault();
-//              this.removeAttribute("style");
-//              this.innerHTML = this.innerHTML.replace(/<div[^]*?<\/div>/, '');;
-//          });
-//      }
-//  }

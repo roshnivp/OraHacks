@@ -53,6 +53,7 @@ a {
   margin-top: 4px;
   margin-right: 9px;
 }
+
 .dropdown-menu .textcomplete-item .picture img {
   width: 32px;
 }
@@ -114,17 +115,15 @@ a {
     padding: 0;
 }
 
-span {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-span:hover {
+.tooltip-trigger:hover {
   background: #A4E1F6;
 }
 
 .tooltip-trigger {
   text-decoration:none;
   position:relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
  
 .tooltip-trigger span {
@@ -153,18 +152,9 @@ span:hover {
   border:1px solid black;
   margin-top:12px;
   margin-left:32px;
-  /* overflow:hidden; */
+  overflow: visible;
   padding:8px;
 }
-
-.tooltip-trigger {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.tooltip-trigger:hover {
-  background: #A4E1F6;
-}
-
 
 .tooltip-triggers {
   position: relative;
