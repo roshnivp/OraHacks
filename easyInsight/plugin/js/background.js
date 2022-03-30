@@ -10,5 +10,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, callback) {
 		files: ['js/jquery.min.js', 'js/ajax.js', 'js/jquery-textcomplete.min.js', 'js/main.js'], 
 		target: { tabId: sender.tab.id } 
 	});
+	// UNCOMMENT THIS TO LOAD SIDE BAR DIRECTLY
+	// chrome.tabs.sendMessage(sender.tab.id ,"panel");
 	return true;
 });
+
+
+chrome.action.onClicked.addListener(tab => {
+	console.log('before panel message sent');
+	chrome.tabs.sendMessage(tab.id,"panel");
+	console.log('panel message sent');
+});
+;
