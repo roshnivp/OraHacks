@@ -28,5 +28,9 @@
     "web_accessible_resources": [{
       "resources": ["/images/*"],
       "matches": ["<all_urls>"]
-    }]
-  }
+    }],
+   "action": {
+      "default_title": "My Bookmarks",
+      "default_popup": "popup.html"
+   }
+}
