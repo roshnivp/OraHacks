@@ -126,18 +126,18 @@ a {
   transition: all 0.3s ease;
 }
  
-.tooltip-trigger span {
+.tooltip-trigger div {
   display:none;
   color:#333333;
   background:white; 
 }
  
-.tooltip-trigger span img {
+.tooltip-trigger span img div {
   float:left;
   margin:0px 8px 8px 0;
 }
  
-.tooltip-trigger:hover span {
+.tooltip-trigger:hover div {
   display:block;
   top:0;
   left:0;
@@ -153,7 +153,7 @@ a {
   border-radius: 0.25rem;
 }
 
-.tooltip-trigger span::after {
+.tooltip-trigger div::after {
   content: "";
   position: absolute;
   bottom: 100%;

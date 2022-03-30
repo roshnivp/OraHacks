@@ -6,7 +6,7 @@
     "content_scripts": [
         {
           "matches": ["file:///Users/*", "https://outlook.office.com/mail/", "https://twitter.com/home"],
-          "js": ["js/content-script.js"],
+          "js": ["js/content-script.js", "js/side-panel.js"],
           "css": ["css/style.css"]
         }
     ],
@@ -26,11 +26,7 @@
         "128": "/images/get_started128.png"
     },
     "web_accessible_resources": [{
-      "resources": ["/images/*"],
+      "resources": ["/images/*", "/js/*", "popup.html"],
       "matches": ["<all_urls>"]
-    }],
-   "action": {
-      "default_title": "My Bookmarks",
-      "default_popup": "popup.html"
-   }
+    }]
 }

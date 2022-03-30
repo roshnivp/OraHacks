@@ -20,12 +20,15 @@ $(document).ready(() => {
         selectedResult: (hit) => {
             //ToDo get image name for the corresponding hit!
             let imageUrl = chrome.runtime.getURL("images/img1.png");
-            return `<span contentEditable="false" class="tooltip-trigger">
-            <label contentEditable="false" spellcheck="false" class="tag-item" style="color:#0071c2;">
-            <a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label>
-            <span><a href="https://www.w3schools.com" target="_blank">
-            <img width='150' height='100' src=${imageUrl}/></a>
-            <h5>${hit}</h5></span>
+            return `<span contentEditable="false" class="tooltip-trigger"><a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label>
+            <div>
+                <a href="https://www.w3schools.com" target="_blank">
+                    <img width='150' src=${imageUrl}/>
+                </a>
+                <h5>${hit}</h5>
+                <button onclick="bookmark(e)">Like</button>
+            </div>
+            
             </span>`;
         },
     
@@ -38,6 +41,11 @@ $(document).ready(() => {
             return `${value}`;
         }
     };
+
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = chrome.runtime.getURL("js/action.js");
+    document.getElementsByTagName('head')[0].appendChild(script);
 
     // Client Initialization
     const apiClient = new ApiClient({
@@ -81,6 +89,8 @@ $(document).ready(() => {
         replace: (hit) => templates.selectedResult(hit) 
     };
 });
+
+
 
 function ApiClient(options) {
     this.options = options;
