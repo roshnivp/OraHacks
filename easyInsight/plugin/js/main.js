@@ -18,6 +18,7 @@ $(document).ready(() => {
         },
         // Template used to display the selected result in the textarea
         selectedResult: (hit) => {
+            //ToDo get image name for the corresponding hit!
             let imageUrl = chrome.runtime.getURL("images/img1.png");
             return `<span contentEditable="false" class="tooltip-trigger">
             <label contentEditable="false" spellcheck="false" class="tag-item" style="color:#0071c2;">
