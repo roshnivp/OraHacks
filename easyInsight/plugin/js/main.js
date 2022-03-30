@@ -13,8 +13,8 @@ $(document).ready(() => {
 
     const templates = {
         dataMapper: (query, items) => {
-            const searchQuery = query != null ? query.trim().toUpperCase() : ""
-            return items.filter(i => i.toUpperCase().includes(query));
+            const searchQuery = query != null ? query.trim().toUpperCase() : "";
+            return items.filter(i => i.toUpperCase().indexOf(searchQuery) !== -1);
         },
         // Template used to display the selected result in the textarea
         selectedResult: (hit) => {
