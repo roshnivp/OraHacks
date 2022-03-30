@@ -23,7 +23,7 @@ $(document).ready(() => {
             return `<span contentEditable="false" class="tooltip-trigger"><a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a></label>
             <div>
                 <a href="https://www.w3schools.com" target="_blank">
-                    <img width='150' src=${imageUrl}/>
+                    <img width='auto' src=${imageUrl}/>
                 </a>
                 <h5>${hit}</h5>
                 <button onclick="bookmark(e)">Like</button>
