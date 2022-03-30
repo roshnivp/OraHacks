@@ -2,9 +2,11 @@ body {
     background-color: lightgray;
     color: slateblue;
 }
+
 small {
     color:#83ba52 !important;
 }
+
 mark {
     background-color: #f5d67b;
 }
@@ -14,9 +16,4 @@ mark {
     color: #000;
     overflow-y: auto;
     max-height: 400px;
-}
-#autocomplete-textarea a {
-    text-decoration: none;
-    font-weight: 400;
-    color: #181818;
 }
