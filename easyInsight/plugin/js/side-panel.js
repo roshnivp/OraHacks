@@ -7,10 +7,11 @@ chrome.runtime.onMessage.addListener(function(msg, sender){
     }
 });
 
+var width = 0;
 var iframe = document.createElement('iframe');
 iframe.style.background = "white";
 iframe.style.height = "100%";
-iframe.style.width = "200px";
+iframe.style.width = width+"px";
 iframe.style.position = "fixed";
 iframe.style.top = "0px";
 iframe.style.right = "0px";
@@ -20,11 +21,17 @@ iframe.src = chrome.runtime.getURL("popup.html");
 
 document.body.appendChild(iframe);
 
+
+
 function toggle(){
     if(iframe.style.width == "0px"){
-        iframe.style.width="400px";
+        width = 400;
+        document.body.style.width = (document.body.clientWidth  - width) + "px";
     }
     else{
-        iframe.style.width="0px";
+       width = 0;
+       document.body.style.width = "100%";
     }
+    iframe.style.width = width+"px";
+
 }

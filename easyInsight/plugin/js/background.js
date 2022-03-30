@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, callback) {
 		target: { tabId: sender.tab.id } 
 	});
 	// UNCOMMENT THIS TO LOAD SIDE BAR DIRECTLY
-	// chrome.tabs.sendMessage(sender.tab.id ,"panel");
+	//chrome.tabs.sendMessage(sender.tab.id ,"panel");
 	return true;
 });
 

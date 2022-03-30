@@ -28,5 +28,6 @@
     "web_accessible_resources": [{
       "resources": ["/images/*", "/js/*", "popup.html"],
       "matches": ["<all_urls>"]
-    }]
+    }],
+   "action": {}
 }
