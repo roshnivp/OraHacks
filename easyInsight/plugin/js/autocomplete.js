@@ -10,6 +10,7 @@ const SEARCH_MATCH_REGEX = new RegExp(
         SEARCH_TRIGGER_MIN_CHARS >= 0 ? `{${SEARCH_TRIGGER_MIN_CHARS},}` : "*"
     }(?:\\s*\\w*)*)$`
 );
+const pushpinIconUrl = chrome.runtime.getURL(`/images/push-pin.png`);
 
 // Client Initialization
 const apiClient = new ApiClient({
@@ -60,15 +61,19 @@ const templates = {
                 <label spellcheck="false" class="tag-item" style="color:#0071c2;">
                 <a href="${rawValue.dashboardurl}" target="_blank" style="cursor:pointer;">${hit}</a>
                 </label>
-                <div>
-                    <a href="https://www.w3schools.com" target="_blank">
-                        <img width='auto' src="${imageUrl}" width="150" height="150"/>
-                    </a>
-                    <h5>${hit}</h5>
-                    <button class="easyinsight-pin-btn" id="easyinsight-${hit}" style="border: none;box-shadow: none;border-radius: 5px;">
-                        Add to Pin
-                    </button>
-                </div>
+                <span class="tooltip">
+                    <span>
+                        <h5>${hit}</h5> 
+                        <button id="easyinsight-${hit}" class="easyinsight-pin-btn">
+                            <img id="easyinsightimg-${hit}" class="easyinsight-pin-btn-img" src= "${pushpinIconUrl}"> </span>
+                        </button>
+                    </span>
+                    <span>
+                        <a href="https://www.w3schools.com" target="_blank">
+                            <img width='auto' src="${imageUrl}" width="150" height="150"/>
+                        </a>
+                    </span>
+                </span>
                 </span>`;
     },
 
@@ -83,7 +88,7 @@ const templates = {
 };
 
 window.addEventListener("click", function (event) {
-    if (event.target?.className == "easyinsight-pin-btn") {
+    if (["easyinsight-pin-btn", "easyinsight-pin-btn-img"].includes(event.target?.className)) {
         chrome.runtime.sendMessage({ metric: event.target?.id?.split("-")[1] });
     }
 });
