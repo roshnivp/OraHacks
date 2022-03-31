@@ -4,6 +4,7 @@ const SEARCH_CACHE = true;
 const SEARCH_MS_DEBOUNCE = 0;
 const SEARCH_TRIGGER_CHAR = "~";
 const SEARCH_TRIGGER_MIN_CHARS = 0;
+const SEARCH_RESULT_MAX_ROWS = 5;
 const SEARCH_MATCH_REGEX = new RegExp(
     `(^|\\s)${SEARCH_TRIGGER_CHAR}(\\w${
         SEARCH_TRIGGER_MIN_CHARS >= 0 ? `{${SEARCH_TRIGGER_MIN_CHARS},}` : "*"
@@ -45,7 +46,7 @@ const mentionStrategy = {
 const templates = {
     dataMapper: (query, items) => {
         const searchQuery = query != null ? query.trim().toUpperCase() : "";
-        return items.filter(i => i.toUpperCase().indexOf(searchQuery) != -1);
+        return items.filter(i => i.toUpperCase().indexOf(searchQuery) != -1).splice(0,SEARCH_RESULT_MAX_ROWS);
     },
     
     // Template used to display the selected result in the textarea
@@ -90,6 +91,7 @@ function ApiClient(options) {
     this.search = (keyword) => {
         return $.ajax({
             url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight`,
+            // url: `https://cfg27mt.private2.fawdev1phx.oraclevcn.com:8005/data`,
             //url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight?keyword=${keyword}`,
             dataType: "json"
         });

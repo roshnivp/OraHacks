@@ -10,7 +10,7 @@ $(document).ready(() => {
   document.getElementById("easyInsight-search-pinboard").addEventListener('change', (event) => {
     let searchTest = document.getElementById("easyInsight-search-pinboard").value;
     console.log("Typing Something", event, searchTest);
-    let filtered_metrics = metrics.filter(m => m.indexOf(searchTest) !== -1);
+    let filtered_metrics = metrics.filter(m => m.toUpperCase().indexOf(searchTest.toUpperCase()) !== -1);
     dumpMetrics(filtered_metrics);
   });
   // chrome.storage.sync.set({'pinnedMetrics': []});
@@ -40,7 +40,7 @@ function dumpMetrics(inputmerics) {
       let li_elm = document.createElement("li");
       li_elm.classList.add("w3-panel");
       li_elm.classList.add("w3-card");
-      li_elm.style="padding: 10px 0px"
+      li_elm.style="padding: 10px 0px; border-radius: 15px;"
       // let a_elm = document.createElement("a");
       // a_elm.href = 'https://www.w3schools.com';
       // a_elm.innerHTML="link";
@@ -55,8 +55,7 @@ function dumpMetrics(inputmerics) {
       btn_elem1.classList.add("btn");
       btn_elem1.classList.add("btn-default");
       btn_elem1.classList.add("btn-sm");
-      btn_elem1.style="margin-left: 10px;";
-
+      btn_elem1.style="margin-left: 10px;border-radius: 15px;";
       let btn_span_elem = document.createElement("span");
       btn_span_elem.classList.add("glyphicon");
       btn_span_elem.classList.add("glyphicon-trash");
@@ -73,14 +72,32 @@ function dumpMetrics(inputmerics) {
       btn_elem2.classList.add("btn");
       btn_elem2.classList.add("btn-default");
       btn_elem2.classList.add("btn-sm");
-      btn_elem2.style="margin-left: 10px;";
+      btn_elem2.style="margin-left: 10px;border-radius: 15px;";
       btn_span_elem = document.createElement("span");
       btn_span_elem.classList.add("glyphicon");
-      btn_span_elem.classList.add("glyphicon-share");
+      btn_span_elem.classList.add("glyphicon-link");
       // btn_span_elem.innerHTML = "Dashboard";
       btn_elem2.appendChild(btn_span_elem);
       let url = "https://www.w3schools.com/icons/tryit.asp?filename=trybs_ref_glyph_zoom-in";
       btn_elem2.onclick = function() {
+        console.log(url);
+        window.open(url, '_blank');
+      };
+
+
+      let btn_elem3 = document.createElement("button");
+      btn_elem3.classList.add("easyinsight-delete-btn");
+      btn_elem3.classList.add("btn");
+      btn_elem3.classList.add("btn-default");
+      btn_elem3.classList.add("btn-sm");
+      btn_elem3.style="margin-left: 10px;border-radius: 15px;";
+      btn_span_elem = document.createElement("span");
+      btn_span_elem.classList.add("glyphicon");
+      btn_span_elem.classList.add("glyphicon-share");
+      // btn_span_elem.innerHTML = "Dashboard";
+      btn_elem3.appendChild(btn_span_elem);
+      url = "https://www.w3schools.com/icons/tryit.asp?filename=trybs_ref_glyph_zoom-in";
+      btn_elem3.onclick = function() {
         console.log(url);
         window.open(url, '_blank');
       };
@@ -94,12 +111,16 @@ function dumpMetrics(inputmerics) {
       img.style="width:100%;";
 
       let page_break_elem = document.createElement("br");
+      let hairline_elem = document.createElement("hr");
+      hairline_elem.style = "margin: 10px 0;";
 
       li_elm.appendChild(img);
       li_elm.appendChild(bold_elm);
-      li_elm.appendChild(page_break_elem);
+      // li_elm.appendChild(page_break_elem);
+      li_elm.appendChild(hairline_elem);
       li_elm.appendChild(btn_elem2);
       li_elm.appendChild(btn_elem1);
+      li_elm.appendChild(btn_elem3);
       ul.appendChild(li_elm);
     }
     console.log(ul);
