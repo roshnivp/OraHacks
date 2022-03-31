@@ -72,3 +72,16 @@ function dumpNode(bookmarkNode, query) {
 document.addEventListener('DOMContentLoaded', function () {
   dumpBookmarks();
 });
+let pinnedMetrics = [];
+
+chrome.storage.sync.get("pinnedMetrics", (result) => {
+    pinnedMetrics = result.pinnedMetrics;
+    console.log(pinnedMetrics);
+});
+
+chrome.runtime.onMessage.addListener(function(message, sender, callback) {
+    if (message.pinnedMetrics) {
+        pinnedMetrics = message.pinnedMetrics;
+        console.log(pinnedMetrics);
+    }
+});

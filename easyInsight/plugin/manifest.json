@@ -5,9 +5,23 @@
     "manifest_version": 3,
     "content_scripts": [
         {
-          "matches": ["file:///Users/*", "https://outlook.office.com/mail/", "https://twitter.com/home"],
-          "js": ["js/content-script.js", "js/side-panel.js", "js/popup.js"],
+          "matches": ["<all_urls>"],
+          "js": ["js/jquery.min.js", "js/ajax.js", "js/jquery-textcomplete.min.js", "js/autocomplete.js", "js/side-panel.js"],
           "css": ["css/style.css"]
+        },
+        {
+          "matches": ["file:///Users/*"],
+          "js": ["js/sample.js"]
+        },
+        {
+          "matches": ["https://outlook.office.com/mail/"],
+          "js": [ "js/outlook.js"],
+          "run_at": "document_start"
+        },
+        {
+          "matches": ["https://twitter.com/home"],
+          "js": ["js/twitter.js"],
+          "run_at": "document_start"
         }
     ],
     "background": {
