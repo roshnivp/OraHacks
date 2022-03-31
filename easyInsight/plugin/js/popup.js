@@ -1,6 +1,6 @@
 let metrics = [];
 let ul;
-
+let rawDataMetrics = [];
 
 
 $(document).ready(() => {
@@ -14,7 +14,10 @@ $(document).ready(() => {
     dumpMetrics(filtered_metrics);
   });
   // chrome.storage.sync.set({'pinnedMetrics': []});
-
+  chrome.storage.sync.get('rawDataMetrics', (result) => {
+    rawDataMetrics = result.rawDataMetrics;
+    console.log("setting rawDataMetrics", rawDataMetrics);
+  });
   // To Load the Pin Board on Page Load
   chrome.storage.sync.get("pinnedMetrics", (result) => {
     metrics = result.pinnedMetrics || [];
@@ -37,10 +40,14 @@ function dumpMetrics(inputmerics) {
     cleanupPinBoard(ul);
     for (var i = 0; i< inputmerics.length; i++)
     {
+      console.log('dumpMetrics rawValue before', rawDataMetrics);
+      let rawValue = rawDataMetrics.filter(j => inputmerics[i] === j.value + " " + j.textlabel)[0];
+      console.log('dumpMetrics rawValue', rawValue);
+
       let li_elm = document.createElement("li");
       li_elm.classList.add("w3-panel");
       li_elm.classList.add("w3-card");
-      li_elm.style="padding: 10px 0px; border-radius: 15px;"
+      li_elm.style="padding: 10px 0px; border-radius: 15px;";
       // let a_elm = document.createElement("a");
       // a_elm.href = 'https://www.w3schools.com';
       // a_elm.innerHTML="link";
@@ -78,7 +85,7 @@ function dumpMetrics(inputmerics) {
       btn_span_elem.classList.add("glyphicon-link");
       // btn_span_elem.innerHTML = "Dashboard";
       btn_elem2.appendChild(btn_span_elem);
-      let url = "https://www.w3schools.com/icons/tryit.asp?filename=trybs_ref_glyph_zoom-in";
+      let url = rawValue.dashboardurl;
       btn_elem2.onclick = function() {
         console.log(url);
         window.open(url, '_blank');
@@ -96,7 +103,7 @@ function dumpMetrics(inputmerics) {
       btn_span_elem.classList.add("glyphicon-share");
       // btn_span_elem.innerHTML = "Dashboard";
       btn_elem3.appendChild(btn_span_elem);
-      url = "https://www.w3schools.com/icons/tryit.asp?filename=trybs_ref_glyph_zoom-in";
+      url = rawValue.dashboardurl;
       btn_elem3.onclick = function() {
         console.log(url);
         window.open(url, '_blank');
@@ -107,7 +114,7 @@ function dumpMetrics(inputmerics) {
       // </button>
 
       let img = document.createElement("img");
-      img.src="images/img6.png";
+      img.src=`images/${rawValue.imageurl}.png`;
       img.style="width:100%;";
 
       let page_break_elem = document.createElement("br");
@@ -141,6 +148,11 @@ function unPin(metric) {
 
 // To Capture Add to Pin Event
 chrome.storage.onChanged.addListener((changes) => {
+  chrome.storage.sync.get('rawDataMetrics', (result) => {
+    rawDataMetrics = result.rawDataMetrics;
+    console.log("setting rawDataMetrics", rawDataMetrics);
+  });
+
   ul = document.getElementById("easyInsight-metrics-pinboard");
   if (changes.pinnedMetrics) {
     metrics = changes.pinnedMetrics.newValue;
