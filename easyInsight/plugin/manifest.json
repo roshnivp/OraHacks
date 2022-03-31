@@ -22,6 +22,11 @@
           "matches": ["https://twitter.com/home"],
           "js": ["js/twitter.js"],
           "run_at": "document_start"
+        },
+        {
+          "matches": ["https://confluence.oraclecorp.com/confluence/*"],
+          "js": ["js/confluence.js"],
+          "run_at": "document_start"
         }
     ],
     "background": {
@@ -31,7 +36,8 @@
     "host_permissions": [
       "https://outlook.office.com/mail/",
       "file:///*/*",
-      "https://twitter.com/home"
+      "https://twitter.com/home",
+      "https://confluence.oraclecorp.com/confluence/*"
       ],
     "icons": {
         "16": "/images/get_started16.png",

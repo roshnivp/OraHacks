@@ -57,25 +57,31 @@ const templates = {
         //     let rawValue = result.rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
         //     console.log(rawValue);
         // });
-        let rawValue = rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
-        console.log('rawValue', rawValue);
-        // ToDo get image name for the corresponding hit!
-        let imageUrl = chrome.runtime.getURL(`/images/${rawValue.imagelabel}.png`);
-        return `
-        <span contentEditable="false" class="tooltip-trigger">
-        <label spellcheck="false" class="tag-item" style="color:#0071c2;">
-        <a href="${rawValue.dashboardurl}" target="_blank" style="cursor:pointer;">${hit}</a>
-        </label>
-        <div>
-            <a href="https://www.w3schools.com" target="_blank">
-                <img width='auto' src="${imageUrl}" width="150" height="150"/>
-            </a>
-            <h5>${hit}</h5>
-            <button class="easyinsight-pin-btn" id="easyinsight-${hit}" style="border: none;box-shadow: none;border-radius: 5px;">
-                Add to Pin
-            </button>
-        </div>
-        </span>`;
+        chrome.storage.sync.get(['isTwitter'], function(result) {
+            if(result) {
+                return `<span style="color:lightblue">${hit}</span>`;
+            } else {
+                let rawValue = rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
+                console.log('rawValue', rawValue);
+                // ToDo get image name for the corresponding hit!
+                let imageUrl = chrome.runtime.getURL(`/images/${rawValue.imagelabel}.png`);
+                return `
+                <span contentEditable="false" class="tooltip-trigger">
+                <label spellcheck="false" class="tag-item" style="color:#0071c2;">
+                <a href="${rawValue.dashboardurl}" target="_blank" style="cursor:pointer;">${hit}</a>
+                </label>
+                <div>
+                    <a href="https://www.w3schools.com" target="_blank">
+                        <img width='auto' src="${imageUrl}" width="150" height="150"/>
+                    </a>
+                    <h5>${hit}</h5>
+                    <button class="easyinsight-pin-btn" id="easyinsight-${hit}" style="border: none;box-shadow: none;border-radius: 5px;">
+                        Add to Pin
+                    </button>
+                </div>
+                </span>`;
+            }
+          });
     },
 
     // Template used to display each result obtained by the API
