@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender){
 
 function toggle(){
     if(iframe.style.width == "0px"){
-        width = 400;
+        width = 300;
         document.body.style.width = (document.body.clientWidth  - width) + "px";
     } else {
        width = 0;
