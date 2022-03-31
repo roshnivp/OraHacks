@@ -1,30 +1,31 @@
-console.log("side-panel script loaded");
 
-chrome.runtime.onMessage.addListener(function(msg, sender){
-    if(msg === "panel"){
-        console.log("message received");
-        toggle();
-    }
-});
-
+var width = 0;
 var iframe = document.createElement('iframe');
 iframe.style.background = "white";
 iframe.style.height = "100%";
-iframe.style.width = "200px";
+iframe.style.width = width+"px";
 iframe.style.position = "fixed";
 iframe.style.top = "0px";
 iframe.style.right = "0px";
 iframe.style.zIndex = "9000000000000000000";
 iframe.frameBorder = "none";
 iframe.src = chrome.runtime.getURL("popup.html");
-
 document.body.appendChild(iframe);
+
+chrome.runtime.onMessage.addListener(function(msg, sender){
+    if(msg.action === "TOGGLE_PANEL"){
+        toggle();
+    }
+    return true;
+});
 
 function toggle(){
     if(iframe.style.width == "0px"){
-        iframe.style.width="400px";
+        width = 400;
+        document.body.style.width = (document.body.clientWidth  - width) + "px";
+    } else {
+       width = 0;
+       document.body.style.width = "100%";
     }
-    else{
-        iframe.style.width="0px";
-    }
+    iframe.style.width = width+"px";
 }
