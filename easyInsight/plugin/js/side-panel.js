@@ -16,6 +16,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender){
     if(msg.action === "TOGGLE_PANEL"){
         toggle();
     }
+    return true;
 });
 
 function toggle(){
