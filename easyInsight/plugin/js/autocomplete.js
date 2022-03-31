@@ -68,7 +68,7 @@ const templates = {
         </label>
         <div>
             <a href="https://www.w3schools.com" target="_blank">
-                <img width='auto' src="${imageUrl}"/>
+                <img width='auto' src="${imageUrl}" width="150" height="150"/>
             </a>
             <h5>${hit}</h5>
             <button class="easyinsight-pin-btn" id="easyinsight-${hit}" style="border: none;box-shadow: none;border-radius: 5px;">
