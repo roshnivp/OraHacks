@@ -53,17 +53,7 @@ const templates = {
     
     // Template used to display the selected result in the textarea
     selectedResult: (hit) => {
-        // chrome.storage.sync.get('rawDataMetrics', (result) => {
-        //     let rawValue = result.rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
-        //     console.log(rawValue);
-        // });
-        chrome.storage.sync.get(['isTwitter'], function(result) {
-            if(result) {
-                return `<span style="color:lightblue">${hit}</span>`;
-            } else {
                 let rawValue = rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
-                console.log('rawValue', rawValue);
-                // ToDo get image name for the corresponding hit!
                 let imageUrl = chrome.runtime.getURL(`/images/${rawValue.imagelabel}.png`);
                 return `
                 <span contentEditable="false" class="tooltip-trigger">
@@ -80,8 +70,6 @@ const templates = {
                     </button>
                 </div>
                 </span>`;
-            }
-          });
     },
 
     // Template used to display each result obtained by the API
@@ -107,7 +95,7 @@ function ApiClient(options) {
             url: `https://624561e47701ec8f7251298c.mockapi.io/easyinsights/oacmetrics`,
             // url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight`,
             // url: `https://cfg27mt.private2.fawdev1phx.oraclevcn.com:8005/data`,
-            //url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight?keyword=${keyword}`,
+            // url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight?keyword=${keyword}`,
             dataType: "json"
         });
     }

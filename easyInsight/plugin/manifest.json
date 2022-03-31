@@ -6,7 +6,7 @@
     "content_scripts": [
         {
           "matches": ["<all_urls>"],
-          "js": ["js/jquery.min.js", "js/ajax.js", "js/jquery-textcomplete.min.js", "js/autocomplete.js", "js/side-panel.js"],
+          "js": ["third-party/jquery.min.js", "third-party/ajax.js", "third-party/jquery-textcomplete.min.js", "js/autocomplete.js", "js/side-panel.js"],
           "css": ["css/style.css"]
         },
         {
