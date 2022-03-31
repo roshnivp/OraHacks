@@ -7,13 +7,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, callback) {
 				chrome.storage.sync.set({'pinnedMetrics': pinnedMetrics})
 			}
 		});
-	} 
-	// UNCOMMENT THIS TO LOAD SIDE BAR DIRECTLY
-	chrome.tabs.sendMessage(sender.tab.id ,{ action : "TOGGLE_PANEL" });
+	}
+	chrome.tabs.sendMessage(sender.tab.id ,{ action : "TOGGLE_PANEL" , update :  true});
 	return true;
 });
 
 
 chrome.action.onClicked.addListener(tab => {
-	chrome.tabs.sendMessage(tab.id, { action: "TOGGLE_PANEL"});
+	chrome.tabs.sendMessage(tab.id, { action: "TOGGLE_PANEL", update :  false});
 });

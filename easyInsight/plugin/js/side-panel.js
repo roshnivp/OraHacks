@@ -13,7 +13,7 @@ iframe.src = chrome.runtime.getURL("popup.html");
 document.body.appendChild(iframe);
 
 chrome.runtime.onMessage.addListener(function(msg, sender){
-    if(msg.action === "TOGGLE_PANEL"){
+    if(msg.action === "TOGGLE_PANEL" && !msg.update){
         toggle();
     }
     return true;
