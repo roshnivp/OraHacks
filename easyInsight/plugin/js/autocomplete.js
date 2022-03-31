@@ -4,6 +4,7 @@ const SEARCH_CACHE = true;
 const SEARCH_MS_DEBOUNCE = 0;
 const SEARCH_TRIGGER_CHAR = "~";
 const SEARCH_TRIGGER_MIN_CHARS = 0;
+const SEARCH_RESULT_MAX_ROWS = 5;
 const SEARCH_MATCH_REGEX = new RegExp(
     `(^|\\s)${SEARCH_TRIGGER_CHAR}(\\w${
         SEARCH_TRIGGER_MIN_CHARS >= 0 ? `{${SEARCH_TRIGGER_MIN_CHARS},}` : "*"
@@ -17,7 +18,7 @@ const apiClient = new ApiClient({
 
 let selectorElement;
 let lastQuery = "";
-
+let rawDataMetrics = [];
 const mentionStrategy = {
     // If enabled, it will memoize by term argument. This is useful to prevent excessive API access
     cache: SEARCH_CACHE,
@@ -29,6 +30,8 @@ const mentionStrategy = {
         lastQuery = query;
         apiClient.search(lastQuery)
             .done((data) => {
+                chrome.storage.sync.set({'rawDataMetrics': data});
+                rawDataMetrics = data;
                 data = templates.dataMapper(query, data);
                 callback(data);
             });
@@ -45,24 +48,32 @@ const mentionStrategy = {
 const templates = {
     dataMapper: (query, items) => {
         const searchQuery = query != null ? query.trim().toUpperCase() : "";
-        return items.filter(i => i.toUpperCase().indexOf(searchQuery) != -1);
+        return items.filter(i => i.imagelabel.toUpperCase().indexOf(searchQuery) != -1).map(i => i.value + " " + i.textlabel).splice(0,SEARCH_RESULT_MAX_ROWS);
     },
     
     // Template used to display the selected result in the textarea
     selectedResult: (hit) => {
+        // chrome.storage.sync.get('rawDataMetrics', (result) => {
+        //     let rawValue = result.rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
+        //     console.log(rawValue);
+        // });
+        let rawValue = rawDataMetrics.filter(i => hit === i.value + " " + i.textlabel)[0];
+        console.log('rawValue', rawValue);
         // ToDo get image name for the corresponding hit!
-        let imageUrl = chrome.runtime.getURL("images/img1.png");
+        let imageUrl = chrome.runtime.getURL(`/images/${rawValue.imagelabel}.png`);
         return `
         <span contentEditable="false" class="tooltip-trigger">
         <label spellcheck="false" class="tag-item" style="color:#0071c2;">
-        <a href="https://www.w3schools.com" target="_blank" style="cursor:pointer;">${hit}</a>
+        <a href="${rawValue.dashboardurl}" target="_blank" style="cursor:pointer;">${hit}</a>
         </label>
         <div>
-            <button class="easyinsight-pin-btn" id="easyinsight-${hit}">Add to Pin</button>
             <a href="https://www.w3schools.com" target="_blank">
-                <img width='auto' src=${imageUrl}/>
+                <img width='auto' src="${imageUrl}" width="150" height="150"/>
             </a>
             <h5>${hit}</h5>
+            <button class="easyinsight-pin-btn" id="easyinsight-${hit}" style="border: none;box-shadow: none;border-radius: 5px;">
+                Add to Pin
+            </button>
         </div>
         </span>`;
     },
@@ -87,7 +98,9 @@ function ApiClient(options) {
     this.options = options;
     this.search = (keyword) => {
         return $.ajax({
-            url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight`,
+            url: `https://624561e47701ec8f7251298c.mockapi.io/easyinsights/oacmetrics`,
+            // url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight`,
+            // url: `https://cfg27mt.private2.fawdev1phx.oraclevcn.com:8005/data`,
             //url: `https://624193629b450ae274421168.mockapi.io/api/v1/easyInsight?keyword=${keyword}`,
             dataType: "json"
         });
