@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+window.addEventListener("click", () => {
 	if (!selectorElement) {
 		selectorElement = $("[aria-label='Message body']");
 		selectorElement.textcomplete([mentionStrategy], {

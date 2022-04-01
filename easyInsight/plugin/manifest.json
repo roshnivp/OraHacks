@@ -14,19 +14,16 @@
           "js": ["js/sample.js"]
         },
         {
-          "matches": ["https://outlook.office.com/mail/"],
-          "js": [ "js/outlook.js"],
-          "run_at": "document_start"
+          "matches": ["https://outlook.office.com/*"],
+          "js": [ "js/outlook.js"]
         },
         {
-          "matches": ["https://twitter.com/home"],
-          "js": ["js/twitter.js"],
-          "run_at": "document_start"
+          "matches": ["https://twitter.com/*"],
+          "js": ["js/twitter.js"]
         },
         {
           "matches": ["https://confluence.oraclecorp.com/confluence/*"],
-          "js": ["js/confluence.js"],
-          "run_at": "document_start"
+          "js": ["js/confluence.js"]
         }
     ],
     "background": {
