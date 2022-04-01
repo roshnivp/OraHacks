@@ -115,37 +115,37 @@ a {
     padding: 0;
 }
 
-.tooltip-trigger:hover {
+.easyinsight-kpi-trigger:hover {
   background: #A4E1F6;
 }
 
-.tooltip-trigger {
+.easyinsight-kpi-trigger {
   text-decoration:none;
   position:relative;
   cursor: pointer;
   transition: all 0.3s ease;
-}
+} */
  
-.tooltip-trigger .tooltip {
+.easyinsight-kpi-trigger .easyisignt-tooltip {
   display:none;
   color:#333333;
   background:white; 
 }
 
-.tooltip span  {
+.easyisignt-tooltip span  {
   display: flex;
   align-items: flex-start;
   margin-right: 8px;
 }
  
-.tooltip span h5 {
+.easyisignt-tooltip span h5 {
   align-content: center;
   text-align: center;
   margin: unset;
 }
  
-.tooltip-trigger:hover .tooltip {
-  display:flex;
+.easyinsight-kpi-trigger:hover .easyisignt-tooltip {
+  display:flex !important;
   top:0;
   left:0;
   position:absolute;
@@ -155,13 +155,13 @@ a {
   max-width: fit-content;
   max-height: fit-content;
   border:1px solid rgba(0,0,0,.15);
-  margin-top:18px;
+  margin-top: 18px !important;
   overflow: visible;
   padding:8px;
   border-radius: 0.25rem;
 }
 
-.tooltip-trigger .tooltip::after {
+.easyinsight-kpi-trigger .easyisignt-tooltip::after {
   content: "";
   position: absolute;
   bottom: 100%;
@@ -188,7 +188,6 @@ a {
   background-color: #fff;
   user-select: none;
   background-image: none;
-  /* border: 1px solid #ccc; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,9 +195,9 @@ a {
 }
 
 .easyinsight-pin-btn:hover {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+  color: #333 !important;
+  background-color: #e6e6e6 !important;
+  border-color: #adadad !important;
 }
 
 .easyinsight-pin-btn img {

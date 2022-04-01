@@ -14,6 +14,5 @@ chrome.runtime.onMessage.addListener(function(message, sender, callback) {
 
 
 chrome.action.onClicked.addListener(tab => {
-	console.log("onClicked");
 	chrome.tabs.sendMessage(tab.id, { action: "TOGGLE_PANEL", update :  false});
 });
