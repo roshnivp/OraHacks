@@ -135,7 +135,7 @@ const templates = {
 
 loadData();
 
-window.addEventListener("click", function (event) {
+document.addEventListener("click", function (event) {
     if (["x_easyinsight-pin-btn", "x_easyinsight-pin-btn-img"]
     .includes(event.target?.className)) {
         let rawValue = rawDataMetrics.filter(i => event.target?.id?.split("-")[1] == i.value)[0];
@@ -146,14 +146,17 @@ window.addEventListener("click", function (event) {
     }
 });
 
-window.addEventListener('load', () => {
+const observer = new MutationObserver(list => {
     renderTooltips();
 });
+
+observer.observe(document.body, {childList: true, subtree: true});
 
 function renderTooltips() {
     let elements = document.getElementsByClassName("x_easyinsight-kpi-trigger");
     for (let i = 0; i < elements.length; i++) {
         elements[i].addEventListener("mouseenter", function(ev) {
+            ev.preventDefault();
             let metric = this.querySelector("label").textContent;
             let rawValue = rawDataMetrics.filter(i => metric?.trim() === i.value + " " + i.textlabel)[0];
             let imageUrl = chrome.runtime.getURL(`/images/${rawValue?.imagelabel}.png`);

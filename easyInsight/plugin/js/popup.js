@@ -4,24 +4,20 @@ let rawDataMetrics = [];
 
 
 $(document).ready(() => {
-  console.log("popup.js - $(document).ready");
 
   // On Value Change in the Search Bar
   document.getElementById("easyInsight-search-pinboard").addEventListener('input', (event) => {
     let searchTest = document.getElementById("easyInsight-search-pinboard").value;
-    console.log("Typing Something", event, searchTest);
     let filtered_metrics = metrics.filter(m => m.toUpperCase().indexOf(searchTest.toUpperCase()) !== -1);
     dumpMetrics(filtered_metrics);
   });
   // chrome.storage.sync.set({'pinnedMetrics': []});
   chrome.storage.sync.get('rawDataMetrics', (result) => {
     rawDataMetrics = result.rawDataMetrics;
-    console.log("setting rawDataMetrics", rawDataMetrics);
   });
   // To Load the Pin Board on Page Load
   chrome.storage.sync.get("pinnedMetrics", (result) => {
     metrics = result.pinnedMetrics || [];
-    console.log(metrics);
     dumpMetrics(metrics);
   });
 
@@ -36,13 +32,10 @@ function cleanupPinBoard(parent){
 function dumpMetrics(inputmerics) {
   ul = document.getElementById("easyInsight-metrics-pinboard");
   if (ul) {
-    console.log(ul);
     cleanupPinBoard(ul);
     for (var i = 0; i< inputmerics.length; i++)
     {
-      console.log('dumpMetrics rawValue before', rawDataMetrics);
       let rawValue = rawDataMetrics.filter(j => inputmerics[i] === j.value + " " + j.textlabel)[0];
-      console.log('dumpMetrics rawValue', rawValue);
 
       let li_elm = document.createElement("li");
       li_elm.classList.add("w3-panel");
@@ -70,7 +63,6 @@ function dumpMetrics(inputmerics) {
       btn_elem1.appendChild(btn_span_elem);
       let id = inputmerics[i];
       btn_elem1.onclick = function() {
-        console.log(id);
         unPin(id);
       };
 
@@ -149,15 +141,10 @@ function dumpMetrics(inputmerics) {
       li_elm.appendChild(btn_elem4);
       ul.appendChild(li_elm);
     }
-    console.log(ul);
   }
 }
 
-
-
-
 function unPin(metric) {
-  console.log("unPin getting called");
   chrome.storage.sync.get("pinnedMetrics", (result) => {
     metrics = metrics.filter(m => m != metric);
     chrome.storage.sync.set({'pinnedMetrics': metrics})
@@ -169,13 +156,11 @@ function unPin(metric) {
 chrome.storage.onChanged.addListener((changes) => {
   chrome.storage.sync.get('rawDataMetrics', (result) => {
     rawDataMetrics = result.rawDataMetrics;
-    console.log("setting rawDataMetrics", rawDataMetrics);
   });
 
   ul = document.getElementById("easyInsight-metrics-pinboard");
   if (changes.pinnedMetrics) {
     metrics = changes.pinnedMetrics.newValue;
-    console.log(metrics);
     dumpMetrics(metrics);
   }
 });
