@@ -31,9 +31,9 @@
     },
     "permissions": ["storage", "activeTab", "scripting", "tabs", "bookmarks"],
     "host_permissions": [
-      "https://outlook.office.com/mail/",
+      "https://outlook.office.com/*",
       "file:///*/*",
-      "https://twitter.com/home",
+      "https://twitter.com/*",
       "https://confluence.oraclecorp.com/confluence/*"
       ],
     "icons": {
