@@ -69,7 +69,7 @@ const templates = {
                         </button>
                     </span>
                     <span>
-                        <a href="https://www.w3schools.com" target="_blank">
+                        <a href="${rawValue.dashboardurl}" target="_blank">
                             <img width='auto' src="${imageUrl}" width="150" height="150"/>
                         </a>
                     </span>

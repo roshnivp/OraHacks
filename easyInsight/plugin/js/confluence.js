@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
    let elementfound = iframe.contentWindow.document.getElementsByTagName("body");
    let idbody = $("#body");
    selectorElement = $("[data-id='wysiwygTextarea']");
-   elementfound.textcomplete([mentionStrategy], {
+   selectorElement.textcomplete([mentionStrategy], {
         debounce: SEARCH_MS_DEBOUNCE,
         maxCount: AUTOCOMPLETE_ITEMS_DISPLAYED,
         adapter: $.fn.textcomplete.HTMLContentEditable
