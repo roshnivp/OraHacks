@@ -1,5 +1,4 @@
 window.addEventListener('load', function () {
-    alert("It's loaded!")
    let iframe = document.getElementById('wysiwygTextarea_ifr');
    let elementfound = iframe.contentWindow.document.getElementsByTagName("body");
    let idbody = $("#body");
